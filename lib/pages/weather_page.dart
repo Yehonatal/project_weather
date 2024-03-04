@@ -76,14 +76,13 @@ class _WeatherPageState extends State<WeatherPage> {
       ),
       body: Center(
         child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-          Container(
-              child: Column(
+          Column(
             children: [
               Icon(
                 Icons.location_on,
                 color: Colors.grey[500],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 15,
               ),
               Text(
@@ -95,7 +94,7 @@ class _WeatherPageState extends State<WeatherPage> {
                     color: Colors.white),
               ),
             ],
-          )),
+          ),
           Text(_weather?.mainCondition ?? "Loading city condition...",
               textAlign: TextAlign.center,
               style: TextStyle(
@@ -115,7 +114,7 @@ class _WeatherPageState extends State<WeatherPage> {
                     fontSize: 54,
                     color: Colors.grey[500])),
           ),
-          SizedBox(
+          const SizedBox(
             height: 50,
           ),
         ]),

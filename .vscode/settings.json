@@ -1,4 +1,4 @@
 {
     "cSpell.words": ["Placemark", "placemarks"],
-    "java.configuration.updateBuildConfiguration": "interactive"
+    "java.configuration.updateBuildConfiguration": "automatic"
 }

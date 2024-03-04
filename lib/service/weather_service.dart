@@ -1,7 +1,6 @@
-// ignore_for_file: constant_identifier_names
-
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:project_weather/model/weather.dart';
@@ -29,15 +28,23 @@ class WeatherService {
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
     }
-    // Get current device location
     Position position = await Geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.high);
+        desiredAccuracy: LocationAccuracy.low,
+        forceAndroidLocationManager: true);
 
-    // Convert the location into a list of place mark objects
+    if (kDebugMode) {
+      print(position);
+    }
     List<Placemark> placemarks =
         await placemarkFromCoordinates(position.latitude, position.longitude);
 
-    String? city = placemarks[0].locality;
+    String? city;
+    for (Placemark placemark in placemarks) {
+      if (placemark.locality != null) {
+        city = placemark.locality;
+        break;
+      }
+    }
 
     return city ?? "";
   }
